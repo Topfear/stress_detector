@@ -92,6 +92,8 @@ def answer(request):
             index = 0
             while (True):
                 if index >= len(text) - 1:
+                    if len(text) == 1:
+                        value_prior_bigram += unigram_word.weight(text.count(text[index]))                     
                     break
                 bigram_word = SmartWord.objects.filter(word_one=text[index], word_two=text[index + 1]).first()
                 unigram_word = SmartWord.objects.filter(word_one=text[index], word_two='').first()
