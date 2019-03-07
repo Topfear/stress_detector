@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>Answer</title>
+        <style>
+            *{
+                font-size: 20px;
+            }
+
+            .answer{
+                display: inline-block;
+                margin-right: 100px;
+            }
+
+            .answer-final{
+                font-size: 100px;
+                margin-top: 50px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Узнать"/>
+        </form>
+        <h3>{{ previous_text }}</h3>
+        <div class="answer" style="font-size: 30px;">
+            <h1>Униграмы</h1>
+            {{answer_unigram}}({{ answer_unigram_value }})
+        </div>
+        <div class="answer" style="font-size: 30px;">
+            <h1>Биграмы</h1>
+            {{answer_bigram}}({{ answer_bigram_value }})
+        </div>
+        <div class="answer" style="font-size: 30px;">
+            <h1>Комбинация</h1>
+            {{answer_combined}}({{ answer_combined_value }})
+        </div>
+        <div class="answer" style="font-size: 30px;">
+            <h1>Биграмы в приотитете</h1>
+            {{answer_prior_bigram}}({{ answer_prior_bigram_value }})
+        </div>
+        <div class="answer-final">
+            {% if answer_prior_bigram_value < 0 %}
+                Стресс
+            {% else %}
+                Всё в порядке
+            {% endif %}
+        </div>
+    </body>
+</html>

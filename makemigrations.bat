@@ -1,0 +1,1 @@
+call manage makemigrations

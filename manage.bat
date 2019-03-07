@@ -1,0 +1,1 @@
+..\venv\Scripts\python manage.py %1 %2 %3 %4 %5

@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>Parser</title>
+        <style>
+            *{
+                font-size: 20px;
+            }
+
+            table {
+               border-collapse: collapse;
+            }
+
+            table, th, td {
+                border: 1px solid black;
+            }
+            
+            th, td{
+                padding: 5px;
+            }
+
+            .unigram-table, .bigram-table{
+                display: inline-block;
+            }
+
+            .bigram-table{
+                vertical-align: top;
+                margin-left: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" name="good" value="Хорошо" style="background-color: greenyellow;"/>
+            <input type="submit" name="bad" value="Плохо" style="background-color: orangered;"/>
+        </form>
+
+        <table class="unigram-table">
+            <tr>
+                <th>Слово</th><th>Значение</th>
+            </tr>
+            {% for word in unigram_words %}
+            <tr>
+                <td>{{ word }}</td><td>{{ word.weight_solo }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <table class="bigram-table">
+            <tr>
+                <th>Словосочетание</th><th>Значение</th>
+            </tr>
+            {% for word in bigram_words %}
+            <tr>
+                <td>{{ word }}</td><td>{{ word.weight_solo }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
